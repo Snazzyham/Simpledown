@@ -7,9 +7,10 @@
     <link rel="stylesheet" type="text/css" href="solid.1.4.0.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.13/vue.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="rk6ttxit1ji9me7"></script>
     <script type="text/javascript" src="download.js"></script>
 </head>
 <body>
@@ -25,12 +26,13 @@
   <div class="containwriter xs-border rounded">
       <div id="editor">
         <textarea v-model="input" debounce="300" id="inputTextToSave"></textarea>
-        <div v-html="input | marked" class="xs-p5"
+        <div v-html="input | marked" class="xs-p5 mdownview" id="exportstuff"
         ></div>
       </div>
       <label class="form-label xs-m1 xs-mt4">Save this to your computer, you can use any extension you like (.md, .txt, etc.)</label>
       <input id="inputFileNameToSaveAs" class="text-input xs-m1 xs-mt1" placeholder="example.md"></input>
       <button class="button button--secondary xs-m1 xs-mt1" onclick="saveTextAsFile()">Download</button>
+  <!--    <a class="button button--icon button--primary xs-float-right" href="#"><i class="fa fa-dropbox"></i>Save to Dropbox</a> -->
   </div>
 
 
@@ -38,7 +40,7 @@
   new Vue({
     el: '#editor',
     data: {
-      input: '#Welcome to Simpledown, a clean and barebones markdown editor for the web. Read more about why I built this [here](http://medium.com/@SnazzyHam).'
+      input: '#Welcome to Simpledown, a clean and barebones markdown editor for the web. Read more about why I built this [here](https://medium.com/@SnazzyHam/why-i-built-simpledown-750e5663bb1f#.t36yudhiv).'
     },
     filters: {
       marked: marked

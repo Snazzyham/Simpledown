@@ -1,7 +1,6 @@
 html, body, #editor {
   margin: 0;
   height: 100%;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
   color: #333;
 }
 
@@ -26,8 +25,9 @@ textarea {
   padding: 20px;
 }
 
-code {
+.mdownview code {
   color: #f66;
+  font-family:  courier;
 }
 
 .containwriter {
@@ -38,4 +38,8 @@ code {
   position: absolute;
   margin-left: 100px;
   margin-right: 100px;
+}
+
+.mdownview {
+  line-height: 140%;
 }
