@@ -1,6 +1,6 @@
 function saveTextAsFile()
 {
-	var textToWrite = document.getElementById("inputTextToSave").value;
+	var textToWrite = document.getElementById("code").value;
 	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
 	var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
 
