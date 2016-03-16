@@ -153,11 +153,20 @@ textarea {
 
 @media screen and (max-width: 1024px) {
   #in {
-    display: none;
+    width: 100%
   }
   #out {
-    left: 0;
-    padding-left: 10px;
+    display: none;
+  }
+  .containwriter {
+    margin-left: 4em;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .containwriter {
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
 
