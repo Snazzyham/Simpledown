@@ -41,11 +41,12 @@
   <div class="xs-col-10 xs-p1 xs-mt2 xs-mx-auto">
   <h1 class=>Simpledown</h1>
   <br>
-  <h3>A simple markdown text editor for the web, developed by <a href="http://snazzyham.com">Soham Adwani</a></h3>
+  <h3>A simple markdown text editor for the web.</h3>
   <br>
   <p><em><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown Cheatsheet</a></em></p>
   <br>
-  <button class="button button--secondary" id="darkmode" onclick='darkMode()'>Dark Mode</button>
+  <button class="button button--secondary" id="darkmode" onclick='darkMode()'>Toggle Dark Mode</button>
+  <button class="button button--secondary" id="vimmode" onclick='vimMode()'>Toggle Vim Mode</button>
   </div>
   <div class="containwriter xs-border rounded">
       <div id="in"><form><textarea id="code">### Welcome to Simpledown, a barebones markdown editor for the web. Learn more about why I built it [here](https://medium.com/@SnazzyHam/why-i-built-simpledown-750e5663bb1f#.hpo9sc89w).
@@ -53,7 +54,13 @@
 
 <br>
 
+### update 1.2 Release Notes.
+- Dark Mode!
+- Vim Mode! 
+- Previously md and html files would save as untitled, now you can specify a name.
+- Changed font to Roboto Mono
 
+<hr>
 
 ### update 1.1 Release Notes.
 
@@ -79,13 +86,15 @@
 * Save to Dropbox (yes, still.)
         </textarea></form>
       </div>
-      <div class="xs-p5 mdownview" id="out"
+      <div class="xs-p5 mdownview xs-border-left" id="out"
       ></div>
         </div>
         <div class="col xs-col-10 xs-offset-1">
       <button class="button button--secondary xs-m1 xs-mt2 xs-mb3" id="saveas-markdown">Download Markdown</button>
       <button class="button button--secondary xs-m1 xs-mt2 xs-mb3 xs-mr2" id="saveas-html">Export as HTML</button>
-      <br>
+      <br><br>
+
+      <p>Built with <3, blood and tears by <a href="http://snazzyham.com">Soham Adwani</a></p>
       </div>
 
 
@@ -333,6 +342,22 @@
         $('body').removeClass('dark-body');
       }
       
+    }
+
+    // VIM bruh 
+
+    function vimMode() {
+
+      if ($("#vimmode").hasClass("button--secondary")) {
+          editor.setOption("keyMap", "vim");
+          $("#vimmode").removeClass("button--secondary");
+          $("#vimmode").attr('class', 'button button--primary');
+      } else {
+          editor.setOption("keyMap", "default");
+          $('#vimmode').removeClass("button--primary");
+          $('#vimmode').attr('class', 'button button--secondary');
+      }
+
     }
 
   </script>

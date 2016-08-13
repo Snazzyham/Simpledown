@@ -39,7 +39,7 @@ html, body, #editor {
     border: 1px solid #ccc !important;
 }
 
-
+// END DARK 
 textarea, #code div {
   display: inline-block;
   width: 49%;
