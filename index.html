@@ -4,7 +4,7 @@
 <head>
 <title>Simpledown</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <script src="markdown-it.js"></script>
     <script src="markdown-it-footnote.js"></script>
     <script src="highlight.pack.js"></script>
@@ -18,10 +18,15 @@
     <script src="codemirror/css/css.js"></script>
     <script src="codemirror/htmlmixed/htmlmixed.js"></script>
     <script src="codemirror/lib/util/continuelist.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
     <script src="rawinflate.js"></script>
     <script src="rawdeflate.js"></script>
+    <script src="vim.js"></script>
     <link rel="stylesheet" href="base16-light.css">
+    <link rel="stylesheet" href="base16-parasio-dark.css">
+    <link rel="stylesheet" href="base16-chalk-dark.css">
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="material.css">
     <link rel="stylesheet" href="default.css">
     <link rel="stylesheet" type="text/css" href="solid.1.4.0.css">
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -36,11 +41,12 @@
   <div class="xs-col-10 xs-p1 xs-mt2 xs-mx-auto">
   <h1 class=>Simpledown</h1>
   <br>
-  <h3>A simple markdown text editor for the web, developed by <a href="http://snazzyham.com">Soham Adwani</a></h3>
-  <h5></h5>
+  <h3>A simple markdown text editor for the web.</h3>
   <br>
   <p><em><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown Cheatsheet</a></em></p>
   <br>
+  <button class="button button--secondary" id="darkmode" onclick='darkMode()'>Toggle Dark Mode</button>
+  <button class="button button--secondary" id="vimmode" onclick='vimMode()'>Toggle Vim Mode</button>
   </div>
   <div class="containwriter xs-border rounded">
       <div id="in"><form><textarea id="code">### Welcome to Simpledown, a barebones markdown editor for the web. Learn more about why I built it [here](https://medium.com/@SnazzyHam/why-i-built-simpledown-750e5663bb1f#.hpo9sc89w).
@@ -48,7 +54,13 @@
 
 <br>
 
+### update 1.2 Release Notes.
+- Dark Mode!
+- Vim Mode! 
+- Previously md and html files would save as untitled, now you can specify a name.
+- Changed font to Roboto Mono
 
+<hr>
 
 ### update 1.1 Release Notes.
 
@@ -74,16 +86,17 @@
 * Save to Dropbox (yes, still.)
         </textarea></form>
       </div>
-      <div class="xs-p5 mdownview" id="out"
+      <div class="xs-p5 mdownview xs-border-left" id="out"
       ></div>
         </div>
         <div class="col xs-col-10 xs-offset-1">
       <button class="button button--secondary xs-m1 xs-mt2 xs-mb3" id="saveas-markdown">Download Markdown</button>
       <button class="button button--secondary xs-m1 xs-mt2 xs-mb3 xs-mr2" id="saveas-html">Export as HTML</button>
-      <br>
+      <br><br>
+
+      <p>Built with <3, blood and tears by <a href="http://snazzyham.com">Soham Adwani</a></p>
       </div>
 
-  <!--    <a class="button button--icon button--primary xs-float-right" href="#"><i class="fa fa-dropbox"></i>Save to Dropbox</a> -->
 
 
   <div id="menu">
@@ -172,10 +185,12 @@
 
     var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
       mode: 'gfm',
-      lineNumbers: false,
+      lineNumbers: true,
       matchBrackets: true,
       lineWrapping: true,
+      //keyMap: 'vim',
       theme: 'base16-light',
+      scrollbarStyle: null,
       extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"}
     });
 
@@ -202,11 +217,11 @@
 
 
     function saveAsMarkdown(){
-      save(editor.getValue(), "untitled.md");
+      save(editor.getValue(), prompt('please enter a file name') + '.md');
     }
 
     function saveAsHtml() {
-      save(document.getElementById('out').innerHTML, "untitled.html");
+      save(document.getElementById('out').innerHTML, prompt('please enter a file name') + '.html' );
     }
 
     document.getElementById('saveas-markdown').addEventListener('click', function() {
@@ -309,6 +324,42 @@
       update(editor);
       editor.focus();
     }
+
+
+    // DARK MOD
+
+    function darkMode() {   
+
+      if ($("#darkmode").hasClass("button--secondary")) {
+        editor.setOption("theme", "material");
+        $("#darkmode").removeClass("button--secondary");
+        $("#darkmode").attr('class', 'button button--primary');
+        $('body').attr('class', 'dark-body');
+      } else {
+      editor.setOption("theme", "base16-light");
+        $("#darkmode").removeClass("button--primary");
+        $("#darkmode").attr('class', 'button button--secondary');
+        $('body').removeClass('dark-body');
+      }
+      
+    }
+
+    // VIM bruh 
+
+    function vimMode() {
+
+      if ($("#vimmode").hasClass("button--secondary")) {
+          editor.setOption("keyMap", "vim");
+          $("#vimmode").removeClass("button--secondary");
+          $("#vimmode").attr('class', 'button button--primary');
+      } else {
+          editor.setOption("keyMap", "default");
+          $('#vimmode').removeClass("button--primary");
+          $('#vimmode').attr('class', 'button button--secondary');
+      }
+
+    }
+
   </script>
 </body>
 </html>
