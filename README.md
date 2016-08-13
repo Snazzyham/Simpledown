@@ -6,6 +6,13 @@ You can read more about why I built this [here](https://medium.com/@SnazzyHam/75
 
 Simpledown was built based off an example for <s>Vue.js</s>\*, and features <s>Marked.js</s> and Solid. 
 
+### update 1.2 Release Notes.
+
+- Dark Mode!
+- Vim Mode!
+- Switched font to Roboto Mono
+- Previously, when saving a markdown or html file, it would save as untitled. Now it prompts the user for a name.  
+
 
 ### update 1.1 Release Notes.
 
