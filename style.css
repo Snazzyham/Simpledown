@@ -4,6 +4,42 @@ html, body, #editor {
   color: #333;
 }
 
+.dark-body {
+    background-color: #141b1f;
+    color: #ccc;
+}
+
+.dark-body h1,
+.dark-body h2,
+.dark-body h3,
+.dark-body h4,
+.dark-body h5,
+.dark-body h6,
+.dark-body blockquote {
+    color: #ccc;
+    background-color: #141b1f;
+}
+
+.dark-body a,
+.dark-body a:visited {
+    color: #777;
+    text-decoration: underline;
+}
+
+.dark-body .CodeMirror-scroll {
+    box-sizing: content-box;
+}
+
+.dark-body .button--primary {
+    background-color: #2f3840 !important;
+}
+
+.dark-body .button--secondary {
+    color: #ccc !important;
+    border: 1px solid #ccc !important;
+}
+
+
 textarea, #code div {
   display: inline-block;
   width: 49%;
@@ -84,6 +120,7 @@ textarea {
   bottom: 0;
   width: auto;
   height: auto;
+  font-family: 'Roboto Mono', sans-serif;
 }
 
 .CodeMirror-scroll {
